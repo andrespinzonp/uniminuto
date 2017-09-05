@@ -5,6 +5,8 @@
  */
 package Frames;
 
+import java.awt.List;
+import java.util.ArrayList;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
@@ -142,19 +144,42 @@ public class Basico extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_LimpiarActionPerformed
 
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
-        String x = Semilla_b.getText();
-        String ite = Iteraciones_b.getText();
-        
-   //Interpretar la formula     
         ScriptEngineManager manager = new ScriptEngineManager();
         ScriptEngine engine = manager.getEngineByName("js");
-
-        try {
-            String Tx = Tx_b.getText();
-            Object result = engine.eval(Tx);
-            System.out.println(Tx + " = " + result);
-        } catch (ScriptException se) {
-            se.printStackTrace();
+        String x = Semilla_b.getText();
+        int ite = Integer.parseInt(Iteraciones_b.getText());
+        String Tx = Tx_b.getText();
+        String Gx = Gx_b.getText();
+        ArrayList<String> Xs = new ArrayList<String>();
+        ArrayList<Double> U = new ArrayList<Double>();
+        Object resultX = null;
+        int i = 0;
+        while (i < ite) {
+            //Reemplazo variable x para luego evaluar la formula
+            String Tx_tmp, Gx_tmp;
+            Tx_tmp = Tx.replace("x", x).
+                    replace("X", x);
+            //Obtengo X
+            try {
+                resultX = String.valueOf(engine.eval(Tx_tmp));
+                System.out.println(Tx + " = " + resultX);
+                Xs.add((String) resultX);
+            } catch (ScriptException se) {
+                se.printStackTrace();
+            }
+            
+            Gx_tmp = Gx.replace("x", Xs.get(i)).
+                    replace("X", Xs.get(i));
+            //Obtengo U
+            try {
+                Object resultU = engine.eval(Gx_tmp);
+                System.out.println(Gx + " = " + resultU);
+                U.add((Double) resultU);
+            } catch (ScriptException se) {
+                se.printStackTrace();
+            }
+            x = (String) resultX;
+            i++;
         }
     }//GEN-LAST:event_GenerarActionPerformed
 
