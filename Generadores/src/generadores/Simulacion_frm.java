@@ -30,8 +30,8 @@ public class Simulacion_frm extends javax.swing.JFrame {
     private void initComponents() {
 
         Desktop = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        Generadores_mn = new javax.swing.JMenuBar();
+        Basico_mn = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -40,7 +40,7 @@ public class Simulacion_frm extends javax.swing.JFrame {
         setPreferredSize(getMaximumSize());
         setSize(getPreferredSize());
 
-        jMenu1.setText("Generadores");
+        Basico_mn.setText("Generadores");
 
         jMenuItem1.setText("Básico");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -48,8 +48,8 @@ public class Simulacion_frm extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
-        jMenu1.add(jSeparator1);
+        Basico_mn.add(jMenuItem1);
+        Basico_mn.add(jSeparator1);
 
         jMenuItem3.setText("Salir");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -57,14 +57,15 @@ public class Simulacion_frm extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        Basico_mn.add(jMenuItem3);
         jMenuItem3.getAccessibleContext().setAccessibleName("Salir_opc");
 
-        jMenuBar1.add(jMenu1);
-        jMenu1.getAccessibleContext().setAccessibleName("Generadores_mn");
-        jMenu1.getAccessibleContext().setAccessibleDescription("");
+        Generadores_mn.add(Basico_mn);
+        Basico_mn.getAccessibleContext().setAccessibleName("Generadores_mn");
+        Basico_mn.getAccessibleContext().setAccessibleDescription("");
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(Generadores_mn);
+        Generadores_mn.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,9 +133,9 @@ public class Simulacion_frm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Basico_mn;
     private javax.swing.JDesktopPane Desktop;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar Generadores_mn;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
