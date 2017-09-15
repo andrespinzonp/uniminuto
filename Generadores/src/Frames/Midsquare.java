@@ -48,9 +48,9 @@ public class Midsquare extends javax.swing.JInternalFrame {
         setTitle("Generador Midsquare");
         setName(""); // NOI18N
 
-        jLabel1.setText("Semilla:");
+        jLabel1.setText("Semilla (Xo):");
 
-        jLabel2.setText("Iteraciones:");
+        jLabel2.setText("Iteraciones (n):");
 
         Semilla_mid.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -105,7 +105,7 @@ public class Midsquare extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Limpiar_mid)
                             .addComponent(Generar_mid))))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(jLabel3)
@@ -153,8 +153,6 @@ public class Midsquare extends javax.swing.JInternalFrame {
 
     private void Generar_midActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Generar_midActionPerformed
         int ite = Integer.parseInt(Iteraciones_mid.getText());
-        ArrayList<String> X = new ArrayList<String>();
-        ArrayList<Double> U = new ArrayList<Double>();
         DefaultListModel listax = new DefaultListModel();
         DefaultListModel listau = new DefaultListModel();
 
@@ -170,7 +168,6 @@ public class Midsquare extends javax.swing.JInternalFrame {
                 cadena = 0 + cadena;
             }
             System.out.println("cadena=" + cadena);
-            X.add(cadena.substring(1, 3));
             listax.addElement(cadena.substring(1, 3));
             ListaX_mid.setModel(listax);
             x = Integer.parseInt(cadena.substring(1, 3));

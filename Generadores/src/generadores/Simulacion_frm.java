@@ -6,6 +6,7 @@
 package generadores;
 
 import Frames.Basico;
+import Frames.Congruencial;
 import Frames.Midsquare;
 
 /**
@@ -19,6 +20,7 @@ public class Simulacion_frm extends javax.swing.JFrame {
      */
     public Simulacion_frm() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -35,11 +37,11 @@ public class Simulacion_frm extends javax.swing.JFrame {
         Basico_mn = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         Midsquare = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(getMaximumSize());
         setSize(getPreferredSize());
 
         Basico_mn.setText("Generadores");
@@ -59,6 +61,16 @@ public class Simulacion_frm extends javax.swing.JFrame {
             }
         });
         Basico_mn.add(Midsquare);
+
+        jMenuItem2.setText("Congruencial lineal");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        Basico_mn.add(jMenuItem2);
+        jMenuItem2.getAccessibleContext().setAccessibleName("Congruencial");
+
         Basico_mn.add(jSeparator1);
 
         jMenuItem3.setText("Salir");
@@ -113,6 +125,12 @@ public class Simulacion_frm extends javax.swing.JFrame {
         mid.setVisible(true);
     }//GEN-LAST:event_MidsquareActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Congruencial cgr = new Congruencial();
+        Desktop.add(cgr);
+        cgr.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -154,6 +172,7 @@ public class Simulacion_frm extends javax.swing.JFrame {
     private javax.swing.JMenuBar Generadores_mn;
     private javax.swing.JMenuItem Midsquare;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
