@@ -6,6 +6,7 @@
 package generadores;
 
 import Frames.Basico;
+import Frames.Midsquare;
 
 /**
  *
@@ -33,6 +34,7 @@ public class Simulacion_frm extends javax.swing.JFrame {
         Generadores_mn = new javax.swing.JMenuBar();
         Basico_mn = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        Midsquare = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem3 = new javax.swing.JMenuItem();
 
@@ -49,6 +51,14 @@ public class Simulacion_frm extends javax.swing.JFrame {
             }
         });
         Basico_mn.add(jMenuItem1);
+
+        Midsquare.setText("Midsquare");
+        Midsquare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MidsquareActionPerformed(evt);
+            }
+        });
+        Basico_mn.add(Midsquare);
         Basico_mn.add(jSeparator1);
 
         jMenuItem3.setText("Salir");
@@ -97,6 +107,12 @@ public class Simulacion_frm extends javax.swing.JFrame {
         b.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void MidsquareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MidsquareActionPerformed
+        Midsquare mid = new Midsquare();
+        Desktop.add(mid);
+        mid.setVisible(true);
+    }//GEN-LAST:event_MidsquareActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -136,6 +152,7 @@ public class Simulacion_frm extends javax.swing.JFrame {
     private javax.swing.JMenu Basico_mn;
     private javax.swing.JDesktopPane Desktop;
     private javax.swing.JMenuBar Generadores_mn;
+    private javax.swing.JMenuItem Midsquare;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
