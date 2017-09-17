@@ -195,20 +195,27 @@ public class Fibonacci extends javax.swing.JInternalFrame {
         int m = Integer.parseInt(m_tf.getText());
         ScriptEngineManager manager = new ScriptEngineManager();
         ScriptEngine engine = manager.getEngineByName("js");
+        DefaultListModel listax = new DefaultListModel();
+        DefaultListModel listau = new DefaultListModel();
         String Fx;
         String Op = (String) Oper_cb.getSelectedItem();
         double x;
-        double resu = 0;
-
+        int resu = 0;
         for (int i = 0; i < ite; i++) {
-            Fx = n0 + Op + n1 % m;
+            Fx = n0 + Op + n1;
             try {
-                x = Double.parseDouble(String.valueOf(engine.eval(Fx)));
-                System.out.println("Fx="+Fx);
-                System.out.println("x="+x);
+                resu = Math.abs(Integer.parseInt(String.valueOf(engine.eval(Fx))));
             } catch (ScriptException ex) {
                 Logger.getLogger(Fibonacci.class.getName()).log(Level.SEVERE, null, ex);
             }
+            x = resu % m;
+            listax.addElement(x);
+            double u = x / m;
+            listau.addElement(u);
+            ListaX.setModel(listax);
+            ListaU.setModel(listau);
+            n0 = n1;
+            n1 = resu;
         }
     }//GEN-LAST:event_Generar_btnActionPerformed
 
