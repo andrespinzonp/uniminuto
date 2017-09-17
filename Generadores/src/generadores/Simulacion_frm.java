@@ -7,6 +7,7 @@ package generadores;
 
 import Frames.Basico;
 import Frames.Congruencial;
+import Frames.Fibonacci;
 import Frames.Midsquare;
 
 /**
@@ -34,57 +35,65 @@ public class Simulacion_frm extends javax.swing.JFrame {
 
         Desktop = new javax.swing.JDesktopPane();
         Generadores_mn = new javax.swing.JMenuBar();
-        Basico_mn = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        Midsquare = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        Menu_mn = new javax.swing.JMenu();
+        Basico_mn = new javax.swing.JMenuItem();
+        Midsquare_mn = new javax.swing.JMenuItem();
+        Congruencial_lineal_mn = new javax.swing.JMenuItem();
+        Fibonacci_mn = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        Salir_mn = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(getPreferredSize());
 
-        Basico_mn.setText("Generadores");
+        Menu_mn.setText("Generadores");
 
-        jMenuItem1.setText("Básico");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        Basico_mn.setText("Básico");
+        Basico_mn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                Basico_mnActionPerformed(evt);
             }
         });
-        Basico_mn.add(jMenuItem1);
+        Menu_mn.add(Basico_mn);
 
-        Midsquare.setText("Midsquare");
-        Midsquare.addActionListener(new java.awt.event.ActionListener() {
+        Midsquare_mn.setText("Midsquare");
+        Midsquare_mn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MidsquareActionPerformed(evt);
+                Midsquare_mnActionPerformed(evt);
             }
         });
-        Basico_mn.add(Midsquare);
+        Menu_mn.add(Midsquare_mn);
 
-        jMenuItem2.setText("Congruencial lineal");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        Congruencial_lineal_mn.setText("Congruencial lineal");
+        Congruencial_lineal_mn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                Congruencial_lineal_mnActionPerformed(evt);
             }
         });
-        Basico_mn.add(jMenuItem2);
-        jMenuItem2.getAccessibleContext().setAccessibleName("Congruencial");
+        Menu_mn.add(Congruencial_lineal_mn);
+        Congruencial_lineal_mn.getAccessibleContext().setAccessibleName("Congruencial");
 
-        Basico_mn.add(jSeparator1);
-
-        jMenuItem3.setText("Salir");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        Fibonacci_mn.setText("Fibonacci");
+        Fibonacci_mn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                Fibonacci_mnActionPerformed(evt);
             }
         });
-        Basico_mn.add(jMenuItem3);
-        jMenuItem3.getAccessibleContext().setAccessibleName("Salir_opc");
+        Menu_mn.add(Fibonacci_mn);
+        Menu_mn.add(jSeparator1);
 
-        Generadores_mn.add(Basico_mn);
-        Basico_mn.getAccessibleContext().setAccessibleName("Generadores_mn");
-        Basico_mn.getAccessibleContext().setAccessibleDescription("");
+        Salir_mn.setText("Salir");
+        Salir_mn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Salir_mnActionPerformed(evt);
+            }
+        });
+        Menu_mn.add(Salir_mn);
+        Salir_mn.getAccessibleContext().setAccessibleName("Salir_opc");
+
+        Generadores_mn.add(Menu_mn);
+        Menu_mn.getAccessibleContext().setAccessibleName("Generadores_mn");
+        Menu_mn.getAccessibleContext().setAccessibleDescription("");
 
         setJMenuBar(Generadores_mn);
         Generadores_mn.getAccessibleContext().setAccessibleName("");
@@ -109,27 +118,33 @@ public class Simulacion_frm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void Salir_mnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salir_mnActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_Salir_mnActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void Basico_mnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Basico_mnActionPerformed
         Basico b = new Basico();
         Desktop.add(b);
         b.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_Basico_mnActionPerformed
 
-    private void MidsquareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MidsquareActionPerformed
+    private void Midsquare_mnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Midsquare_mnActionPerformed
         Midsquare mid = new Midsquare();
         Desktop.add(mid);
         mid.setVisible(true);
-    }//GEN-LAST:event_MidsquareActionPerformed
+    }//GEN-LAST:event_Midsquare_mnActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void Congruencial_lineal_mnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Congruencial_lineal_mnActionPerformed
         Congruencial cgr = new Congruencial();
         Desktop.add(cgr);
         cgr.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_Congruencial_lineal_mnActionPerformed
+
+    private void Fibonacci_mnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Fibonacci_mnActionPerformed
+        Fibonacci fib = new Fibonacci();
+        Desktop.add(fib);
+        fib.setVisible(true);
+    }//GEN-LAST:event_Fibonacci_mnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,13 +182,14 @@ public class Simulacion_frm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Basico_mn;
+    private javax.swing.JMenuItem Basico_mn;
+    private javax.swing.JMenuItem Congruencial_lineal_mn;
     private javax.swing.JDesktopPane Desktop;
+    private javax.swing.JMenuItem Fibonacci_mn;
     private javax.swing.JMenuBar Generadores_mn;
-    private javax.swing.JMenuItem Midsquare;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenu Menu_mn;
+    private javax.swing.JMenuItem Midsquare_mn;
+    private javax.swing.JMenuItem Salir_mn;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

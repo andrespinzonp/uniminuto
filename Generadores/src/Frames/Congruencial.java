@@ -64,16 +64,6 @@ public class Congruencial extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Iteraciones (n):");
 
-        Semilla_cgr.setText("6");
-
-        a_cgr.setText("33");
-
-        b_cgr.setText("5");
-
-        m_cgr.setText("4");
-
-        Itera_cgr.setText("5");
-
         Generar_btn.setText("Generar");
         Generar_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,11 +112,10 @@ public class Congruencial extends javax.swing.JInternalFrame {
                                 .addGap(15, 15, 15)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(Itera_cgr, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(Semilla_cgr)
-                                .addComponent(a_cgr, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                                .addComponent(b_cgr)
-                                .addComponent(m_cgr)))
+                            .addComponent(Semilla_cgr, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(a_cgr, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                            .addComponent(b_cgr, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(m_cgr, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Generar_btn)
@@ -193,16 +182,16 @@ public class Congruencial extends javax.swing.JInternalFrame {
         int ite = Integer.parseInt(Itera_cgr.getText());
         DefaultListModel listax = new DefaultListModel();
         DefaultListModel listau = new DefaultListModel();
-        Double x = Double.parseDouble(Semilla_cgr.getText());
-        Double a = Double.parseDouble(a_cgr.getText());
-        Double b = Double.parseDouble(b_cgr.getText());
-        Double m = Double.parseDouble(m_cgr.getText());
-        Double resu;
+        double x = Integer.parseInt(Semilla_cgr.getText());
+        int a = Integer.parseInt(a_cgr.getText());
+        int b = Integer.parseInt(b_cgr.getText());
+        int m = Integer.parseInt(m_cgr.getText());
+        double resu;
         DecimalFormat df = new DecimalFormat("#");
-
+//        Congruencial cgr = new Congruencial();
+//        cgr.congruencialLineal(x, ite, a, b, m);
         //Xn = (a*x+b)%m
         for (int i = 0; i < ite; i++) {
-
             resu = ((a * x) + b) % m;
             x = resu;
             listax.addElement(df.format(x));
@@ -212,7 +201,19 @@ public class Congruencial extends javax.swing.JInternalFrame {
             ListaU.setModel(listau);
         }
     }//GEN-LAST:event_Generar_btnActionPerformed
-
+    
+    public void congruencialLineal(double semilla, int ite, int a, int b, int m) {
+        double resu;
+        DecimalFormat df = new DecimalFormat("#.##");
+        for (int i = 0; i < ite; i++) {
+            System.out.print((i + 1) + " - Semilla=" + df.format(semilla));
+            resu = ((a * semilla) + b) % m;
+            semilla = resu;
+            double u = semilla / (m - 1);
+            System.out.println("     X=" + resu + "      U=" + u);
+        }
+    }
+    
     private void Limpiar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Limpiar_btnActionPerformed
         DefaultListModel limpiar = new DefaultListModel();
         Semilla_cgr.setText("");

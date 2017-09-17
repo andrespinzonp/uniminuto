@@ -48,12 +48,10 @@
                       </Group>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="Itera_cgr" pref="136" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Semilla_cgr" max="32767" attributes="0"/>
-                              <Component id="a_cgr" pref="136" max="32767" attributes="0"/>
-                              <Component id="b_cgr" max="32767" attributes="0"/>
-                              <Component id="m_cgr" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="Semilla_cgr" alignment="0" max="32767" attributes="0"/>
+                          <Component id="a_cgr" alignment="0" pref="136" max="32767" attributes="0"/>
+                          <Component id="b_cgr" alignment="0" max="32767" attributes="0"/>
+                          <Component id="m_cgr" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -155,33 +153,18 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="Semilla_cgr">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="6"/>
-      </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Semilla_cgr"/>
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
       </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JTextField" name="a_cgr">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="33"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="b_cgr">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="5"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="m_cgr">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="4"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="Itera_cgr">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="5"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="Generar_btn">
       <Properties>
