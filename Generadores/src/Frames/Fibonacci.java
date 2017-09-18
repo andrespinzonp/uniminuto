@@ -64,12 +64,6 @@ public class Fibonacci extends javax.swing.JInternalFrame {
 
         jLabel4.setText("m:");
 
-        n0_tf.setText("2");
-
-        n1_tf.setText("3");
-
-        m_tf.setText("6");
-
         Oper_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-", "*" }));
 
         jScrollPane1.setViewportView(ListaX);
@@ -97,8 +91,6 @@ public class Fibonacci extends javax.swing.JInternalFrame {
         });
 
         jLabel7.setText("Iteraciones (n):");
-
-        Ite_tf.setText("3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,8 +157,8 @@ public class Fibonacci extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7)
                     .addComponent(Ite_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
