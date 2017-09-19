@@ -8,7 +8,9 @@ package generadores;
 import Frames.Basico;
 import Frames.Congruencial;
 import Frames.Fibonacci;
+import Frames.L_Ecuyer;
 import Frames.Midsquare;
+import Frames.Wichman_Hill;
 
 /**
  *
@@ -40,6 +42,8 @@ public class Simulacion_frm extends javax.swing.JFrame {
         Midsquare_mn = new javax.swing.JMenuItem();
         Congruencial_lineal_mn = new javax.swing.JMenuItem();
         Fibonacci_mn = new javax.swing.JMenuItem();
+        WichmanHill_mn = new javax.swing.JMenuItem();
+        L_Ecuyer_mn = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         Salir_mn = new javax.swing.JMenuItem();
 
@@ -80,6 +84,22 @@ public class Simulacion_frm extends javax.swing.JFrame {
             }
         });
         Menu_mn.add(Fibonacci_mn);
+
+        WichmanHill_mn.setText("Wichman and Hill");
+        WichmanHill_mn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WichmanHill_mnActionPerformed(evt);
+            }
+        });
+        Menu_mn.add(WichmanHill_mn);
+
+        L_Ecuyer_mn.setText("L'Ecuyer");
+        L_Ecuyer_mn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                L_Ecuyer_mnActionPerformed(evt);
+            }
+        });
+        Menu_mn.add(L_Ecuyer_mn);
         Menu_mn.add(jSeparator1);
 
         Salir_mn.setText("Salir");
@@ -146,6 +166,18 @@ public class Simulacion_frm extends javax.swing.JFrame {
         fib.setVisible(true);
     }//GEN-LAST:event_Fibonacci_mnActionPerformed
 
+    private void WichmanHill_mnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WichmanHill_mnActionPerformed
+        Wichman_Hill wyh = new Wichman_Hill();
+        Desktop.add(wyh);
+        wyh.setVisible(true);
+    }//GEN-LAST:event_WichmanHill_mnActionPerformed
+
+    private void L_Ecuyer_mnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L_Ecuyer_mnActionPerformed
+       L_Ecuyer lec = new L_Ecuyer();
+        Desktop.add(lec);
+        lec.setVisible(true);
+    }//GEN-LAST:event_L_Ecuyer_mnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -187,9 +219,11 @@ public class Simulacion_frm extends javax.swing.JFrame {
     private javax.swing.JDesktopPane Desktop;
     private javax.swing.JMenuItem Fibonacci_mn;
     private javax.swing.JMenuBar Generadores_mn;
+    private javax.swing.JMenuItem L_Ecuyer_mn;
     private javax.swing.JMenu Menu_mn;
     private javax.swing.JMenuItem Midsquare_mn;
     private javax.swing.JMenuItem Salir_mn;
+    private javax.swing.JMenuItem WichmanHill_mn;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

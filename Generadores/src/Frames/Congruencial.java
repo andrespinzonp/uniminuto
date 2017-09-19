@@ -182,7 +182,7 @@ public class Congruencial extends javax.swing.JInternalFrame {
         int ite = Integer.parseInt(Itera_cgr.getText());
         DefaultListModel listax = new DefaultListModel();
         DefaultListModel listau = new DefaultListModel();
-        double x = Integer.parseInt(Semilla_cgr.getText());
+        double x = Double.parseDouble(Semilla_cgr.getText());
         int a = Integer.parseInt(a_cgr.getText());
         int b = Integer.parseInt(b_cgr.getText());
         int m = Integer.parseInt(m_cgr.getText());
