@@ -264,8 +264,11 @@ public class Imagen extends javax.swing.JInternalFrame {
                 negros++;
             }
         }
+        double porc = (double)negros / puntos;
+        System.out.println(negros + "/" + puntos + "* 100="+ (double)negros/puntos);
+        System.out.println("por=" + porc);
         negros_lbl.setText("" + negros + "");
-        Mancha_lbl.setText("" + (negros / puntos) * 100 + " % = " + imageActual.getWidth() * imageActual.getHeight() * (negros / puntos) / 100 + "px");
+        Mancha_lbl.setText("" + porc * 100 + " % = " + (imageActual.getWidth() * imageActual.getHeight()) * porc + "px");
     }//GEN-LAST:event_Analizar_btnActionPerformed
 
 
