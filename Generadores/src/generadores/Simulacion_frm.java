@@ -8,6 +8,7 @@ package generadores;
 import Frames.Basico;
 import Frames.Congruencial;
 import Frames.Fibonacci;
+import Frames.Imagen;
 import Frames.L_Ecuyer;
 import Frames.Midsquare;
 import Frames.Wichman_Hill;
@@ -44,6 +45,7 @@ public class Simulacion_frm extends javax.swing.JFrame {
         Fibonacci_mn = new javax.swing.JMenuItem();
         WichmanHill_mn = new javax.swing.JMenuItem();
         L_Ecuyer_mn = new javax.swing.JMenuItem();
+        Imagen_mn = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         Salir_mn = new javax.swing.JMenuItem();
 
@@ -100,6 +102,14 @@ public class Simulacion_frm extends javax.swing.JFrame {
             }
         });
         Menu_mn.add(L_Ecuyer_mn);
+
+        Imagen_mn.setText("Imagen");
+        Imagen_mn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Imagen_mnActionPerformed(evt);
+            }
+        });
+        Menu_mn.add(Imagen_mn);
         Menu_mn.add(jSeparator1);
 
         Salir_mn.setText("Salir");
@@ -178,6 +188,12 @@ public class Simulacion_frm extends javax.swing.JFrame {
         lec.setVisible(true);
     }//GEN-LAST:event_L_Ecuyer_mnActionPerformed
 
+    private void Imagen_mnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Imagen_mnActionPerformed
+       Imagen img = new Imagen();
+        Desktop.add(img);
+        img.setVisible(true);
+    }//GEN-LAST:event_Imagen_mnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -219,6 +235,7 @@ public class Simulacion_frm extends javax.swing.JFrame {
     private javax.swing.JDesktopPane Desktop;
     private javax.swing.JMenuItem Fibonacci_mn;
     private javax.swing.JMenuBar Generadores_mn;
+    private javax.swing.JMenuItem Imagen_mn;
     private javax.swing.JMenuItem L_Ecuyer_mn;
     private javax.swing.JMenu Menu_mn;
     private javax.swing.JMenuItem Midsquare_mn;
