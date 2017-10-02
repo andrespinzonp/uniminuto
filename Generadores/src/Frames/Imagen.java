@@ -5,7 +5,14 @@
  */
 package Frames;
 
+import java.awt.Color;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -18,6 +25,7 @@ public class Imagen extends javax.swing.JInternalFrame {
     
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de imagen (*.png)", "png");
     String rutaimagen;
+    private BufferedImage imageActual;
 
     /**
      * Creates new form Imagen
@@ -46,6 +54,10 @@ public class Imagen extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         TamIma_lbl = new javax.swing.JLabel();
         Mancha_lbl = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        negros_lbl = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        Puntos_tf = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Imagen");
@@ -90,6 +102,11 @@ public class Imagen extends javax.swing.JInternalFrame {
         );
 
         Analizar_btn.setText("Analizar");
+        Analizar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Analizar_btnActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -101,6 +118,10 @@ public class Imagen extends javax.swing.JInternalFrame {
 
         Mancha_lbl.setText("0 %");
 
+        jLabel4.setText("Puntos negros:");
+
+        negros_lbl.setText("0");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -108,12 +129,18 @@ public class Imagen extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Mancha_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TamIma_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(15, 15, 15)
+                        .addComponent(TamIma_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Mancha_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(negros_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -123,34 +150,48 @@ public class Imagen extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(TamIma_lbl))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(negros_lbl))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(Mancha_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
+
+        jLabel3.setText("Puntos a generar:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Subir_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Analizar_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(67, 67, 67))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ruta_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ruta_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(Subir_btn)
+                                        .addGap(64, 64, 64))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Puntos_tf))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Analizar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65)))))
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +201,11 @@ public class Imagen extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Subir_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(Puntos_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addComponent(Analizar_btn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -173,12 +218,14 @@ public class Imagen extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Subir_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Subir_btnActionPerformed
+        BufferedImage png = null;
         JFileChooser fc = new JFileChooser();
         fc.setFileFilter(filter);
         int opc = fc.showOpenDialog(this);
         if (opc == JFileChooser.APPROVE_OPTION) {
             String path = fc.getSelectedFile().getPath();
             String file = fc.getSelectedFile().toString();
+            File imagenSeleccionada = fc.getSelectedFile();
             Imagen_lbl.setIcon(new ImageIcon(path));
             ImageIcon icon = new ImageIcon(path);
             Image img = icon.getImage();
@@ -187,21 +234,55 @@ public class Imagen extends javax.swing.JInternalFrame {
             Imagen_lbl.setIcon(newIcon);
             Imagen_lbl.setSize(250, 250);
             ruta_lbl.setText(path);
-            rutaimagen="";
+            rutaimagen = "";
+            try {
+                png = ImageIO.read(imagenSeleccionada);
+            } catch (IOException ex) {
+                Logger.getLogger(Imagen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
+        imageActual = png;
     }//GEN-LAST:event_Subir_btnActionPerformed
+
+    private void Analizar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Analizar_btnActionPerformed
+        int mediaPixel, colorSRGB;
+        Color colorAux;
+        TamIma_lbl.setText(imageActual.getWidth() + "px X " + imageActual.getHeight() + "px");
+        //Recorremos la imagen píxel a píxel
+        for (int i = 0; i < imageActual.getWidth(); i++) {
+            for (int j = 0; j < imageActual.getHeight(); j++) {
+                System.out.println("Ancho=" + imageActual.getWidth());
+                System.out.println("Alto=" + imageActual.getHeight());
+                //Almacenamos el color del píxel
+                colorAux = new Color(this.imageActual.getRGB(i, j));
+                System.out.println("RGB=" + colorAux);
+                //Calculamos la media de los tres canales (rojo, verde, azul)
+                mediaPixel = (int) ((colorAux.getRed() + colorAux.getGreen() + colorAux.getBlue()) / 3);
+                //Cambiamos a formato sRGB
+                colorSRGB = (mediaPixel << 16) | (mediaPixel << 8) | mediaPixel;
+                //Asignamos el nuevo valor al BufferedImage
+                imageActual.setRGB(i, j, colorSRGB);
+            }
+        }
+
+    }//GEN-LAST:event_Analizar_btnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Analizar_btn;
     private javax.swing.JLabel Imagen_lbl;
     private javax.swing.JLabel Mancha_lbl;
+    private javax.swing.JTextField Puntos_tf;
     private javax.swing.JButton Subir_btn;
     private javax.swing.JLabel TamIma_lbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel negros_lbl;
     private javax.swing.JLabel ruta_lbl;
     // End of variables declaration//GEN-END:variables
 }
