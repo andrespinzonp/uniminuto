@@ -184,7 +184,7 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Component id="TamIma_lbl" pref="95" max="32767" attributes="0"/>
+                          <Component id="TamIma_lbl" pref="170" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -238,7 +238,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="TamIma_lbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="0 px X 0 px"/>
+            <Property name="text" type="java.lang.String" value="0px X 0px = 0px"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Mancha_lbl">
@@ -248,7 +248,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Puntos negros:"/>
+            <Property name="text" type="java.lang.String" value="Pixeles negros:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="negros_lbl">
@@ -264,6 +264,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="Puntos_tf">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="100"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -10,6 +10,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -22,7 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author andrespinzon
  */
 public class Imagen extends javax.swing.JInternalFrame {
-    
+
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de imagen (*.png)", "png");
     String rutaimagen;
     private BufferedImage imageActual;
@@ -114,11 +115,11 @@ public class Imagen extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Tamaño de la mancha:");
 
-        TamIma_lbl.setText("0 px X 0 px");
+        TamIma_lbl.setText("0px X 0px = 0px");
 
         Mancha_lbl.setText("0 %");
 
-        jLabel4.setText("Puntos negros:");
+        jLabel4.setText("Pixeles negros:");
 
         negros_lbl.setText("0");
 
@@ -132,7 +133,7 @@ public class Imagen extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(15, 15, 15)
-                        .addComponent(TamIma_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                        .addComponent(TamIma_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -162,6 +163,8 @@ public class Imagen extends javax.swing.JInternalFrame {
         );
 
         jLabel3.setText("Puntos a generar:");
+
+        Puntos_tf.setText("100");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -240,32 +243,31 @@ public class Imagen extends javax.swing.JInternalFrame {
             } catch (IOException ex) {
                 Logger.getLogger(Imagen.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
         imageActual = png;
     }//GEN-LAST:event_Subir_btnActionPerformed
 
     private void Analizar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Analizar_btnActionPerformed
-        int mediaPixel, colorSRGB;
+        int negros = 0;
         Color colorAux;
-        TamIma_lbl.setText(imageActual.getWidth() + "px X " + imageActual.getHeight() + "px");
-        //Recorremos la imagen píxel a píxel
-        for (int i = 0; i < imageActual.getWidth(); i++) {
-            for (int j = 0; j < imageActual.getHeight(); j++) {
-                System.out.println("Ancho=" + imageActual.getWidth());
-                System.out.println("Alto=" + imageActual.getHeight());
-                //Almacenamos el color del píxel
-                colorAux = new Color(this.imageActual.getRGB(i, j));
-                System.out.println("RGB=" + colorAux);
-                //Calculamos la media de los tres canales (rojo, verde, azul)
-                mediaPixel = (int) ((colorAux.getRed() + colorAux.getGreen() + colorAux.getBlue()) / 3);
-                //Cambiamos a formato sRGB
-                colorSRGB = (mediaPixel << 16) | (mediaPixel << 8) | mediaPixel;
-                //Asignamos el nuevo valor al BufferedImage
-                imageActual.setRGB(i, j, colorSRGB);
+        Random aleatorio = new Random();
+        TamIma_lbl.setText(imageActual.getWidth() + "px X " + imageActual.getHeight() + "px =" + imageActual.getWidth() + imageActual.getHeight() + "px");
+        //Recorremos la imagen píxel a píxel en los puntos aleatorios
+        int puntos = Integer.parseInt(Puntos_tf.getText());
+        int x, y;
+        for (int i = 0; i < puntos / 2; i++) {
+            for (int j = 0; j < puntos / 2; j++) {
+                x = aleatorio.nextInt(imageActual.getWidth());
+                y = aleatorio.nextInt(imageActual.getHeight());
+                colorAux = new Color(this.imageActual.getRGB(x, y));
+                if (colorAux.getRed() == 0 && colorAux.getGreen() == 0 && colorAux.getBlue() == 0) {
+                    negros++;
+                }
             }
         }
-
+        negros_lbl.setText("" + negros + "");
+        Mancha_lbl.setText("" + negros / puntos + " % = " + imageActual.getWidth() * imageActual.getHeight() * (negros / puntos) / 100 + "px");
     }//GEN-LAST:event_Analizar_btnActionPerformed
 
 
