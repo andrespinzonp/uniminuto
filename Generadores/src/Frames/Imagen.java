@@ -256,18 +256,16 @@ public class Imagen extends javax.swing.JInternalFrame {
         //Recorremos la imagen píxel a píxel en los puntos aleatorios
         int puntos = Integer.parseInt(Puntos_tf.getText());
         int x, y;
-        for (int i = 0; i < puntos / 2; i++) {
-            for (int j = 0; j < puntos / 2; j++) {
-                x = aleatorio.nextInt(imageActual.getWidth());
-                y = aleatorio.nextInt(imageActual.getHeight());
-                colorAux = new Color(this.imageActual.getRGB(x, y));
-                if (colorAux.getRed() == 0 && colorAux.getGreen() == 0 && colorAux.getBlue() == 0) {
-                    negros++;
-                }
+        for (int i = 0; i < puntos; i++) {
+            x = aleatorio.nextInt(imageActual.getWidth());
+            y = aleatorio.nextInt(imageActual.getHeight());
+            colorAux = new Color(this.imageActual.getRGB(x, y));
+            if (colorAux.getRed() == 0 && colorAux.getGreen() == 0 && colorAux.getBlue() == 0) {
+                negros++;
             }
         }
         negros_lbl.setText("" + negros + "");
-        Mancha_lbl.setText("" + negros / puntos + " % = " + imageActual.getWidth() * imageActual.getHeight() * (negros / puntos) / 100 + "px");
+        Mancha_lbl.setText("" + (negros / puntos) * 100 + " % = " + imageActual.getWidth() * imageActual.getHeight() * (negros / puntos) / 100 + "px");
     }//GEN-LAST:event_Analizar_btnActionPerformed
 
 
