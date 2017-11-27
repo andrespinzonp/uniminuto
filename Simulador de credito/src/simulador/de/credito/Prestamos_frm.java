@@ -7,6 +7,13 @@ package simulador.de.credito;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+import sun.util.calendar.LocalGregorianCalendar;
 
 /**
  *
@@ -14,7 +21,7 @@ import java.text.DecimalFormat;
  */
 public class Prestamos_frm extends javax.swing.JFrame {
 
-    int valor;
+    double valor, ip;
     DecimalFormat miles = new DecimalFormat("###,###.##");
     DecimalFormat decimal = new DecimalFormat("###.##");
 
@@ -45,7 +52,6 @@ public class Prestamos_frm extends javax.swing.JFrame {
         Nombre_jtf = new javax.swing.JTextField();
         Id_jtf = new javax.swing.JTextField();
         Valor_jtf = new javax.swing.JTextField();
-        Plazo_jtf = new javax.swing.JTextField();
         EA_jtf = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         Mensual_rbt = new javax.swing.JRadioButton();
@@ -70,6 +76,7 @@ public class Prestamos_frm extends javax.swing.JFrame {
         Limpiar_btn = new javax.swing.JButton();
         Imprimir_btn = new javax.swing.JButton();
         Salir_btn = new javax.swing.JButton();
+        plazo_jcb = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("El EURO Prestamos");
@@ -103,7 +110,7 @@ public class Prestamos_frm extends javax.swing.JFrame {
             }
         });
 
-        EA_jtf.setText("0.0");
+        EA_jtf.setText("0,0");
         EA_jtf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 EA_jtfFocusLost(evt);
@@ -134,7 +141,7 @@ public class Prestamos_frm extends javax.swing.JFrame {
 
         jLabel12.setText("Interés periodico:");
 
-        NA_jtf.setText("0.0");
+        NA_jtf.setText("0,0");
         NA_jtf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 NA_jtfFocusLost(evt);
@@ -146,7 +153,7 @@ public class Prestamos_frm extends javax.swing.JFrame {
             }
         });
 
-        Ip_jtf.setText("0.0");
+        Ip_jtf.setText("0,0");
         Ip_jtf.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 Ip_jtfKeyTyped(evt);
@@ -234,6 +241,8 @@ public class Prestamos_frm extends javax.swing.JFrame {
             }
         });
 
+        plazo_jcb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6", "7" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -259,7 +268,7 @@ public class Prestamos_frm extends javax.swing.JFrame {
                                     .addComponent(Id_jtf)
                                     .addComponent(Valor_jtf)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Plazo_jtf, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(plazo_jcb, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel8))))
                             .addGroup(layout.createSequentialGroup()
@@ -302,7 +311,6 @@ public class Prestamos_frm extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel9)
                                         .addGap(39, 39, 39)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -354,10 +362,11 @@ public class Prestamos_frm extends javax.swing.JFrame {
                                             .addComponent(Ip_jtf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel15)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(Nombre_jtf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel3)
+                                        .addComponent(Nombre_jtf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -377,9 +386,9 @@ public class Prestamos_frm extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel6)
-                                            .addComponent(Plazo_jtf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel8))))))
-                        .addGap(35, 35, 35)
+                                            .addComponent(jLabel8)
+                                            .addComponent(plazo_jcb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Calcular_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Limpiar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -400,7 +409,8 @@ public class Prestamos_frm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Calcular_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Calcular_btnActionPerformed
-
+        CalcCigual();
+        CalcGradual();
     }//GEN-LAST:event_Calcular_btnActionPerformed
 
     private void Salir_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salir_btnActionPerformed
@@ -440,7 +450,6 @@ public class Prestamos_frm extends javax.swing.JFrame {
         Nombre_jtf.setText("");
         Id_jtf.setText("");
         Valor_jtf.setText("");
-        Plazo_jtf.setText("");
         EA_jtf.setText("0.0");
         EA_jtf.setEnabled(true);
         NA_jtf.setText("0.0");
@@ -452,21 +461,18 @@ public class Prestamos_frm extends javax.swing.JFrame {
 
     private void EA_jtfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EA_jtfFocusLost
         Double n = 0.0;
-        Double ip_EA = 0.0;
-        Double na_EA = 0.0;
+        Double ip_EA;
+        Double na_EA;
         int periodo = 0;
         //Calculo ip
         if (Mensual_rbt.isSelected()) {
-            //30/360
-            n = 0.08333333333;
+            n = 30 / 360.0;
             periodo = 12;
         } else if (Bimestral_rbt.isSelected()) {
-            //60/360
-            n = 0.1666666667;
+            n = 60 / 360.0;
             periodo = 6;
         } else if (Trimestral_rbt.isSelected()) {
-            //90/360
-            n = 0.25;
+            n = 90 / 360.0;
             periodo = 4;
         }
 
@@ -476,6 +482,7 @@ public class Prestamos_frm extends javax.swing.JFrame {
         ip_EA = ((Math.pow(1 + ea_EA, n)) - 1) * 100;
         System.out.println("ip_EA=" + ip_EA);
         Ip_jtf.setText(decimal.format(ip_EA));
+        ip = ip_EA / 100;
 
         //Calculo NA
         na_EA = (ip_EA * periodo);
@@ -486,17 +493,17 @@ public class Prestamos_frm extends javax.swing.JFrame {
     private void NA_jtfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NA_jtfFocusLost
         Double n = 0.0;
         int periodo = 0;
-        Double ea_NA = 0.0;
-        Double ip_NA = 0.0;
+        Double ea_NA;
+        Double ip_NA;
         //Calculo ip
         if (Mensual_rbt.isSelected()) {
-            n = 360.0 / 30.0;
+            n = 360.0 / 30;
             periodo = 12;
         } else if (Bimestral_rbt.isSelected()) {
-            n = 360.0 / 60.0;
+            n = 360.0 / 60;
             periodo = 6;
         } else if (Trimestral_rbt.isSelected()) {
-            n = 360.0 / 90.0;
+            n = 360.0 / 90;
             periodo = 4;
         }
 
@@ -508,6 +515,7 @@ public class Prestamos_frm extends javax.swing.JFrame {
         ip_NA = na_NA / periodo;
         Ip_jtf.setText(decimal.format(ip_NA * 100));
         System.out.println("ip_NA=" + ip_NA);
+        ip = ip_NA / 100;
 
         //Calculo el ea
         //ea=((1+ip)^360/dias) -1
@@ -519,6 +527,120 @@ public class Prestamos_frm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public void CalcCigual() {
+        int cuotas;
+        int meses = 0;
+        int periodo = 0;
+        LocalDate fecha = LocalDate.now();
+        double SalCap;
+        double AmCap;
+        double AmInt;
+        double FluCaja;
+        DefaultTableModel modeloLista = new DefaultTableModel();
+        ArrayList<String> columna = new ArrayList<>();
+        columna.add("Cuota");
+        columna.add("Fecha");
+        columna.add("Saldo a capital");
+        columna.add("Amortización a capital");
+        columna.add("Amortización a interés");
+        columna.add("Flujo de caja");
+
+        for (Object col : columna) {
+            modeloLista.addColumn(col);
+        }
+
+        jTable1.setModel(modeloLista);
+        ArrayList<Object[]> datos = new ArrayList<>();
+
+        if (Mensual_rbt.isSelected()) {
+            periodo = 12;
+            meses = 1;
+        } else if (Bimestral_rbt.isSelected()) {
+            periodo = 6;
+            meses = 2;
+        } else if (Trimestral_rbt.isSelected()) {
+            periodo = 4;
+            meses = 3;
+        }
+
+        cuotas = Integer.parseInt((String) plazo_jcb.getSelectedItem()) * periodo;
+        SalCap = valor;
+        Object[] dato1 = new Object[]{"0", fecha, miles.format(SalCap), "-", "-", miles.format(SalCap)};
+        datos.add(dato1);
+        for (Object[] dato : datos) {
+            modeloLista.addRow(dato1);
+        }
+        AmCap = valor / cuotas;
+        for (int i = 1; i <= cuotas; i++) {
+            fecha = fecha.plusMonths(meses);
+            AmInt = SalCap * ip;
+            SalCap = SalCap - AmCap;
+            FluCaja = AmCap + AmInt;
+            dato1 = new Object[]{i, fecha, miles.format(SalCap), miles.format(AmCap), miles.format(AmInt), miles.format(FluCaja * -1)};
+            datos.add(dato1);
+            modeloLista.addRow(dato1);
+        }
+    }
+
+    public void CalcGradual() {
+        int cuotas;
+        int meses = 0;
+        int periodo = 0;
+        LocalDate fecha = LocalDate.now();
+        double SalCap;
+        double AmCap;
+        double AmInt;
+        double Cuota;
+        double FluCaja;
+        DefaultTableModel modeloLista = new DefaultTableModel();
+        ArrayList<String> columna = new ArrayList<>();
+        columna.add("Cuota");
+        columna.add("Fecha");
+        columna.add("Saldo a capital");
+        columna.add("Amortización a capital");
+        columna.add("Amortización a interés");
+        columna.add("Cuota fija");
+        columna.add("Flujo de caja");
+
+        for (Object col : columna) {
+            modeloLista.addColumn(col);
+        }
+
+        jTable2.setModel(modeloLista);
+        ArrayList<Object[]> datos = new ArrayList<>();
+
+        if (Mensual_rbt.isSelected()) {
+            periodo = 12;
+            meses = 1;
+        } else if (Bimestral_rbt.isSelected()) {
+            periodo = 6;
+            meses = 2;
+        } else if (Trimestral_rbt.isSelected()) {
+            periodo = 4;
+            meses = 3;
+        }
+
+        cuotas = Integer.parseInt((String) plazo_jcb.getSelectedItem()) * periodo;
+        SalCap = valor;
+        Object[] dato1 = new Object[]{"0", fecha, miles.format(SalCap), "-", "-", "-", miles.format(SalCap)};
+        datos.add(dato1);
+        for (Object[] dato : datos) {
+            modeloLista.addRow(dato1);
+        }
+        //cuota = valor ((1 + ip)^n * ip) / (1+ip)^n - 1)
+        Cuota = valor * ((Math.pow((1 + ip), cuotas) * ip) / (Math.pow((1 + ip), cuotas) - 1));
+        for (int i = 1; i <= cuotas; i++) {
+            fecha = fecha.plusMonths(meses);
+            AmInt = SalCap * ip;
+            AmCap = Cuota - AmInt;
+            SalCap = SalCap - AmCap;
+            FluCaja = AmCap + AmInt;
+            dato1 = new Object[]{i, fecha, miles.format(SalCap), miles.format(AmCap), miles.format(AmInt), miles.format(Cuota), miles.format(FluCaja * -1)};
+            datos.add(dato1);
+            modeloLista.addRow(dato1);
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -563,7 +685,6 @@ public class Prestamos_frm extends javax.swing.JFrame {
     private javax.swing.JTextField NA_jtf;
     private javax.swing.JTextField Nombre_jtf;
     private javax.swing.ButtonGroup Periodicidad_btgr;
-    private javax.swing.JTextField Plazo_jtf;
     private javax.swing.JButton Salir_btn;
     private javax.swing.JRadioButton Trimestral_rbt;
     private javax.swing.JTextField Valor_jtf;
@@ -588,5 +709,6 @@ public class Prestamos_frm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JComboBox<String> plazo_jcb;
     // End of variables declaration//GEN-END:variables
 }
